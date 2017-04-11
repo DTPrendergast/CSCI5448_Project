@@ -10,7 +10,7 @@ public class InventoryController
 	private Connection conn = null;
 	private static final String username = "CSCI5448"; // This will have to reflect the u/n and pw 
 	private static final String password = "1234"; // that we set up for our server
-	private static final String ip = "172.31.98.152";
+	private static final String ip = "172.31.98.152"; // IP address of my machine
 	
 	public InventoryController() 
 	{
