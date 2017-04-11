@@ -8,8 +8,9 @@ import java.sql.SQLException;
 public class InventoryController 
 {
 	private Connection conn = null;
-	private static final String username = "root"; // This will have to reflect the u/n and pw 
+	private static final String username = "CSCI5448"; // This will have to reflect the u/n and pw 
 	private static final String password = "1234"; // that we set up for our server
+	private static final String ip = "172.31.98.152";
 	
 	public InventoryController() 
 	{
@@ -22,7 +23,8 @@ public class InventoryController
 		}
 
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/INVENTORY", username, password);
+			conn = DriverManager.getConnection("jdbc:mysql://" + ip 
+					+ ":3306/INVENTORY", username, password);
 		} catch (SQLException e) {
 			System.out.println("Connection failed.");
 			e.printStackTrace();
