@@ -66,8 +66,38 @@ public class Warehouse {
 	
 	public Warehouse initWarehouse()
 	{
+		ConfigParser config = new ConfigParser("config.properties");
 		
+		// Create the forklifts
+		for (int lift = 0; lift < config.getNumLifts(); lift++)
+		{
+			Forklift robot = (Forklift)RobotFactory.createRobot("Forklift");
+			this.addForklift(robot);
+		}
+		
+		// Create the retbots
+		for (int bot = 0; bot < config.getNumRets(); bot++)
+		{
+			RetBot robot = (RetBot)RobotFactory.createRobot("RetBot");
+			this.addRetBot(robot);
+		}
+		
+		for (int product = 0; product < config.getNumProds(); product++) 
+		{
+			String prodID = config.getProdID(product);
+			String prodType = config.getProdType(product);
+			int weight = config.getWeight(product);
+			int palletQty = config.getPalletQty(product);
+			String palletLoc = config.getPalletLoc(product);
+			
+			this.getProductFactory().addProduct(prodID, prodType, weight);
+			Pallet pallet = new Pallet(this.getProductFactory().lookupProduct(prodID),
+					palletQty, palletLoc);
+			this.addPallet(pallet);
+		}
+		
+		config.closeInput();
+
 		return this;
 	}
-
 }
