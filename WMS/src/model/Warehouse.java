@@ -7,6 +7,7 @@ public class Warehouse {
 	private ArrayList<RetBot> retbots;
 	private ArrayList<Pallet> pallets;
 	private ProductFactory productFactory;
+	private static final String configFilePath = "config.properties";
 		
 	public Warehouse()
 	{
@@ -66,7 +67,7 @@ public class Warehouse {
 	
 	public Warehouse initWarehouse()
 	{
-		ConfigParser config = new ConfigParser("config.properties");
+		ConfigParser config = new ConfigParser(configFilePath);
 		
 		// Create the forklifts
 		for (int lift = 0; lift < config.getNumLifts(); lift++)
