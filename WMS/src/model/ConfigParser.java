@@ -1,14 +1,17 @@
 package model;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 
 public class ConfigParser {
 	
 	private Properties prop;
 	private InputStream in;
+	private OutputStream out;
 	
 	public ConfigParser()
 	{
@@ -22,13 +25,46 @@ public class ConfigParser {
 			prop.load(in);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}	
+		} finally {
+			
+		}
+	}
+	
+	public void writeConfig(String key, String value, String config)
+	{
+		try {
+			out = new FileOutputStream(config);
+			prop.setProperty(key, value);
+			prop.store(out, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+	
+	public void writeConfig(String key, int value, String config) 
+	{
+		try {
+			out = new FileOutputStream(config);
+			prop.setProperty(key, Integer.toString(value));
+			prop.store(out, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	public void closeInput() 
 	{
 		try {
 			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void closeOutput()
+	{
+		try {
+			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
