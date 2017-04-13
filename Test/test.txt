@@ -6,3 +6,4 @@ Next comment done by Max.
 
 Another test line -Dan
 
+last line added -max
