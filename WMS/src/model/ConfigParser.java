@@ -10,12 +10,15 @@ public class ConfigParser {
 	private Properties prop;
 	private InputStream in;
 	
-	public ConfigParser(String configFile)
+	public ConfigParser()
 	{
 		prop = new Properties();
-		
+	}
+	
+	public void readConfig(String config)
+	{
 		try {
-			in = new FileInputStream(configFile);
+			in = new FileInputStream(config);
 			prop.load(in);
 		} catch (IOException e) {
 			e.printStackTrace();

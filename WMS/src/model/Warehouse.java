@@ -67,7 +67,8 @@ public class Warehouse {
 	
 	public Warehouse initWarehouse()
 	{
-		ConfigParser config = new ConfigParser(configFilePath);
+		ConfigParser config = new ConfigParser();
+		config.readConfig(configFilePath);
 		
 		// Create the forklifts
 		for (int lift = 0; lift < config.getNumLifts(); lift++)
@@ -98,7 +99,6 @@ public class Warehouse {
 		}
 		
 		config.closeInput();
-
 		return this;
 	}
 }
