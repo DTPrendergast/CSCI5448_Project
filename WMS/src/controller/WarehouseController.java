@@ -62,6 +62,22 @@ public class WarehouseController implements ActionListener
 				
 		// Code to add eventlister to the orderSim 
 	}
+	public Warehouse getWarehouse()
+	{
+		return this.warehouse;
+	}
+	public OperatorUI getOperatorUI()
+	{
+		return this.operatorUI;
+	}
+	public Pallet getSelectedPallet()
+	{
+		return this.selectedPallet;
+	}
+	public void setSelectedPallet(Pallet pallet)
+	{
+		this.selectedPallet = pallet;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{		
@@ -81,25 +97,7 @@ public class WarehouseController implements ActionListener
 			// TODO
 			System.out.println("Functionality not implemented.");
 		}		
-	}
-	
-	public Warehouse getWarehouse()
-	{
-		return this.warehouse;
-	}
-	public OperatorUI getOperatorUI()
-	{
-		return this.operatorUI;
-	}
-	public Pallet getSelectedPallet()
-	{
-		return this.selectedPallet;
-	}
-	public void setSelectedPallet(Pallet pallet)
-	{
-		this.selectedPallet = pallet;
-	}
-	
+	}	
 	public void handleOrder(Product product, int qty)
 	{
 		// Select the appropriate RetBot
@@ -165,7 +163,5 @@ public class WarehouseController implements ActionListener
 	{
 		// TODO
 	}
-		
 	
-
 }
