@@ -58,4 +58,29 @@ public abstract class WarehouseLoader
 		warehouse.addPallet(pallet3);
 		
 	}
+	
+	public static void incomingPallets(Warehouse warehouse) {
+        String[] productNames = {"AirJordan","Bicycle","Carpet","Dishwasher","Earplugs","Freezer",
+        		"GarbageCan","HockeyStick","InkCartridge","Jersey","Knife","Laptop",
+        		"Monitor","New","Opp","Pit","Quilt","Refrigerator","Steamer","Toaster"};
+        
+        //right now it sets up the info for 100 pallets.
+        for (int i = 0; i < 100; i++) {
+                int weight = (int) (Math.random() * 100);
+                int quantity = (int) (Math.random() * 100);
+                int nameIndex = (int) (Math.random() * productNames.length);
+                Integer nameNum = (int) (Math.random() * 98) + 1;
+                
+                String type = productNames[nameIndex];
+                String ID = type.substring(0, 3).toUpperCase();
+                if (nameNum < 10) {
+                        ID = ID.concat("-0");
+                } else {
+                        ID = ID.concat("-");
+                }
+                ID = ID.concat(nameNum.toString());
+                //System.out.println(ID);
+                System.out.println("ID: " + ID + "  Type: " + type + "  Weight: " + weight + "  Quantity: " + quantity);
+        }
+	}	
 }
