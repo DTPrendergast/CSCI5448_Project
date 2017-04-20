@@ -18,6 +18,7 @@ public class Forklift extends Robot
 		// Add delay for robot to move to pallet
 		try
 		{
+			System.out.println("Forklift moving...");
 			Thread.sleep(5000);
 		} 
 		catch (InterruptedException e)
@@ -28,10 +29,12 @@ public class Forklift extends Robot
 		// Change location of robot and indicate carrying object
 		this.setLocation(pallet.getLocation());
 		this.setCarryingObj(true);
+		System.out.println("Forklift picked up pallet");
 		
 		// Add delay for robot to take pallet to destination
 		try
 		{
+			System.out.println("Forklift moving to shelves... ");
 			Thread.sleep(5000);
 		} 
 		catch (InterruptedException e)
@@ -45,6 +48,7 @@ public class Forklift extends Robot
 		this.setCarryingObj(false);
 		this.setBusy(false);
 		pallet.setLocation(location);
+		System.out.println("Forklift delivered pallet");
 				
 		// Add delay for robot to move back to garage
 		try

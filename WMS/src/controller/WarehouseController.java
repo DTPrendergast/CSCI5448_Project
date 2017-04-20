@@ -85,7 +85,8 @@ public class WarehouseController implements ActionListener
 		
 		if (command[0].equals("Pallet"))
 		{
-			this.selectedPallet = this.warehouse.findPallet(command[1]);			
+			this.selectedPallet = this.warehouse.findPallet(command[1]);
+			System.out.println("pallet is .." + this.selectedPallet.getComposedOf());
 		}
 		
 		else if (command[0].equals("Destination") & !(this.selectedPallet==null))
@@ -131,23 +132,25 @@ public class WarehouseController implements ActionListener
 	{
 		// Select the appropriate Forklift
 		Forklift forklift = this.warehouse.assignForklift();
-		
+		System.out.println("in handleMovePallet method");
 		// Command Forklift to perform the "move pallet" task asynchronously
-		EventQueue.invokeLater(new Runnable()
-				{
-					public void run()
-					{
-						try
-						{
-							forklift.movePallet(pallet, locB);
-						} 
-						catch (Exception e)
-						{
-							e.printStackTrace();
-						}
-					}
-				});
+		new Thread(new Runnable() {
+		    public void run() {
+		    	forklift.movePallet(pallet, locB);
+		    }
+		}).start();	
+
+		System.out.println("**** Continuing with 'handlMovePallet' method");
+		try
+		{
+			Thread.sleep(10000);
+		} 
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
 		this.selectedPallet = null;
+		System.out.println("**** Continuing again ");
 	}
 	public int handleCancelMove(Forklift forklift)
 	{

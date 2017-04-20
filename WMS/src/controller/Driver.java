@@ -23,9 +23,8 @@ public class Driver
 		
 		// Initialize the warehouse
 		//WarehouseLoader.loadWarehouse(warehouseController.getWarehouse());
-		Warehouse warehouse = new Warehouse();
-		warehouse.initWarehouse();
-		System.out.println("Pallet 1 location is: " + warehouse.getPallets().get(0).getLocation());
+		warehouseController.getWarehouse().initWarehouse();
+		//System.out.println("Pallet 1 location is: " + warehouse.getPallets().get(0).getLocation());
 		
 		// Run simulators for orders and arriving trucks
 

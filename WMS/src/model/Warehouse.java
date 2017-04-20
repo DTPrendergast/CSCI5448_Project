@@ -91,12 +91,12 @@ public class Warehouse {
 			int weight = config.getWeight(product);
 			int palletQty = config.getPalletQty(product);
 			String palletLoc = config.getPalletLoc(product);
-			
+						
 			this.getProductFactory().addProduct(prodID, prodType, weight);
 			Pallet pallet = new Pallet(this.getProductFactory().lookupProduct(prodID),
-					palletQty, palletLoc);
+					palletQty, palletLoc);			
 
-			this.addPallet(pallet);
+			this.addPallet(pallet);			
 		}
 		
 		config.closeInput();
