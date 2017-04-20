@@ -14,6 +14,7 @@ public class WarehouseController implements ActionListener
 {
 	private Warehouse warehouse;
 	private OperatorUI operatorUI;
+	private Pallet selectedPallet;
 			
 	public WarehouseController()
 	{
@@ -22,6 +23,8 @@ public class WarehouseController implements ActionListener
 	}
 	public void init()
 	{
+		// Code to initialize state of the warehouse
+		
 		ArrayList<JButton> selectPalletButtons = this.operatorUI.getSelectPalletButtons();
 		for (JButton btn : selectPalletButtons)
 		{
@@ -39,6 +42,8 @@ public class WarehouseController implements ActionListener
 		{
 			rdbtn.addActionListener(this);
 		}
+		
+		// Code to add eventlister to the orderSim 
 	}
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -83,6 +88,12 @@ public class WarehouseController implements ActionListener
 	{
 		// TODO
 	}
+	
+	public void actionPerformed
+	
+	public void eventOccured(Event e)
+	
+	
 	
 
 }

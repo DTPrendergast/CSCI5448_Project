@@ -1,1 +1,9 @@
 this is a test. -max
+
+That was a stupid test, Max.  - Dan
+DAN IS STUPID TOO. Duh!
+Next comment done by Max.
+
+Another test line -Dan
+
+last line added -max
