@@ -14,8 +14,8 @@ public class Driver
 		System.out.println("Select Mode (1=Sim, 2=Real Operations): ");
 		int mode = sc.nextInt();
 		
-		System.out.println("Select User Role (1=Warehouse Operator, 2=Inventory Manager): ");
-		int role = sc.nextInt();
+//		System.out.println("Select User Role (1=Warehouse Operator, 2=Inventory Manager): ");
+//		int role = sc.nextInt();
 		
 		WarehouseController warehouseController = new WarehouseController();
 		warehouseController.init();		

@@ -4,6 +4,7 @@ import model.*;
 import view.*;
 
 import java.awt.AWTEvent;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,40 +15,53 @@ public class WarehouseController implements ActionListener
 {
 	private Warehouse warehouse;
 	private OperatorUI operatorUI;
+	private Pallet selectedPallet;
 			
 	public WarehouseController()
 	{
 		this.warehouse = new Warehouse();
 		this.operatorUI = new OperatorUI();
+		this.selectedPallet = null;
 	}
 	public void init()
 	{
+		// Code to initialize state of the warehouse and establish listeners				
 		ArrayList<JButton> selectPalletButtons = this.operatorUI.getSelectPalletButtons();
-		for (JButton btn : selectPalletButtons)
+		for (int i=0; i<selectPalletButtons.size(); i++)
 		{
-			btn.addActionListener(this);
+			selectPalletButtons.get(i).addActionListener(this);			
+			if (i==0)
+			{
+				selectPalletButtons.get(i).setActionCommand("Pallet QA");
+			}
+			else
+			{
+				selectPalletButtons.get(i).setActionCommand("Pallet LD" + i);
+			}			
 		}
-		
+				
 		ArrayList<JButton> destButtons = this.operatorUI.getDestButtons();
 		for (JButton btn : destButtons)
 		{
 			btn.addActionListener(this);
+			btn.setActionCommand("Destination " + btn.getText());
 		}
 		
-		ArrayList<JRadioButton> radioButtons = this.operatorUI.getRadioButtons();
-		for (JRadioButton rdbtn : radioButtons)
+		ArrayList<JRadioButton> radioButtons = this.operatorUI.getRadioButtons();		
+		int numBots = radioButtons.size()/2;
+		for (int i=0; i<numBots; i++)
 		{
-			rdbtn.addActionListener(this);
+			radioButtons.get(i).addActionListener(this);
+			radioButtons.get(i).setActionCommand("Enable RetBot " + (i));
 		}
+		for (int i=0; i<numBots; i++)
+		{
+			radioButtons.get(i+numBots).addActionListener(this);
+			radioButtons.get(i+numBots).setActionCommand("Enable Forklift " + (i));
+		}
+				
+		// Code to add eventlister to the orderSim 
 	}
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		// TODO Auto-generated method stub
-		System.out.println("Button Pressed");
-		
-	}
-	
 	public Warehouse getWarehouse()
 	{
 		return this.warehouse;
@@ -56,18 +70,84 @@ public class WarehouseController implements ActionListener
 	{
 		return this.operatorUI;
 	}
-	
-	public void placeOrder(String prodID, int qty)
+	public Pallet getSelectedPallet()
 	{
-		// TODO
+		return this.selectedPallet;
 	}
-	public void handleScanPallet(String prodID, String prodType, int qty, String location)
+	public void setSelectedPallet(Pallet pallet)
 	{
-		// TODO
+		this.selectedPallet = pallet;
 	}
-	public void handleMovePallet(String locA, String locB)
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{		
+		String[] command = e.getActionCommand().split(" ");
+		
+		if (command[0].equals("Pallet"))
+		{
+			this.selectedPallet = this.warehouse.findPallet(command[1]);			
+		}
+		
+		else if (command[0].equals("Destination") & !(this.selectedPallet==null))
+		{
+			this.handleMovePallet(this.selectedPallet, command[1]);
+		}
+		else if (command[0].equals("Enable"))
+		{
+			// TODO
+			System.out.println("Functionality not implemented.");
+		}		
+	}	
+	public void handleOrder(Product product, int qty)
 	{
-		// TODO
+		// Select the appropriate RetBot
+		RetBot retbot = this.warehouse.assignRetBot();
+		
+		// Find the pallet with the requested products
+		Pallet pallet = this.warehouse.findPallet(product);
+
+		// Command RetBot to "retrieve product" asynchronously
+		EventQueue.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						try
+						{
+							retbot.retrieveProduct(pallet, qty);
+						} 
+						catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+					}
+				});
+	}
+	public void handleScanPallet(Product product, int qty, String location)
+	{
+		Pallet pallet = new Pallet(product, qty, location);
+		this.warehouse.addPallet(pallet);
+	}
+	public void handleMovePallet(Pallet pallet, String locB)
+	{
+		// Select the appropriate Forklift
+		Forklift forklift = this.warehouse.assignForklift();
+		
+		// Command Forklift to perform the "move pallet" task asynchronously
+		EventQueue.invokeLater(new Runnable()
+				{
+					public void run()
+					{
+						try
+						{
+							forklift.movePallet(pallet, locB);
+						} 
+						catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+					}
+				});
+		this.selectedPallet = null;
 	}
 	public int handleCancelMove(Forklift forklift)
 	{
@@ -84,5 +164,4 @@ public class WarehouseController implements ActionListener
 		// TODO
 	}
 	
-
 }

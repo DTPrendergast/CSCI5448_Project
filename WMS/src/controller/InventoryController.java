@@ -12,9 +12,11 @@ public class InventoryController
 	private Connection conn = null;
 	private static final String username = "CSCI5448"; // This will have to reflect the u/n and pw 
 	private static final String password = "1234"; // that we set up for our server
+
 	private static final String ip = "172.31.98.152"; // Will have to change this to a static IP
 	private static final boolean debug = true; // If this is true, any exception raised will show the 
 												// explicit error. Otherwise, will client will have to error check
+
 	
 	public InventoryController() 
 	{
