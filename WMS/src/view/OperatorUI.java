@@ -39,7 +39,6 @@ import java.awt.Rectangle;
 
 public class OperatorUI extends JFrame
 {
-
 	private JPanel cpWrhsOperator;
 	private JRadioButton rdbtnEnableRetBot1;
 	private JRadioButton rdbtnEnableRetBot2;

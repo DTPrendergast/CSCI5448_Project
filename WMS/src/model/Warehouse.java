@@ -101,4 +101,57 @@ public class Warehouse {
 		config.closeInput();
 		return this;
 	}
+
+	
+	public Pallet findPallet(String location)
+	{
+		for (Pallet pallet: this.pallets)
+		{
+			if (pallet.getLocation().equals(location))
+				return pallet;
+		}
+		System.out.println("Error:  No pallet at that location!");
+		return null;
+	}
+	public Pallet findPallet(Product product)
+	{
+		for (Pallet pallet: this.pallets)
+		{
+			if (pallet.getComposedOf().equals(product) & pallet.getOnShelf()==true)
+			{
+				return pallet;
+			}
+		}
+		System.out.println("Error:  No pallet on the shelves contains that product!");
+		return null;
+	}
+	
+	public Forklift assignForklift()
+	{		
+		for (Forklift forklift: this.forklifts)
+		{
+			if (forklift.getFunctional()==true & forklift.getBusy()==false)
+			{
+				return forklift;
+			}			
+		}
+		System.out.println("Error:  No Forklift available!");
+		return null;
+	}
+	
+	public RetBot assignRetBot()
+	{
+		for (RetBot retbot: this.retbots)
+		{
+			if (retbot.getFunctional()==true & retbot.getBusy()==false)
+			{
+				return retbot;
+			}
+		}
+		System.out.println("Error:  No RetBot available!");
+		return null;
+	}
+	
+
+
 }

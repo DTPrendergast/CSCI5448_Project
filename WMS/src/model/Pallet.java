@@ -5,10 +5,10 @@ import java.util.*;
 public class Pallet
 {
 	private boolean isEmpty;
+	private boolean onShelf;
 	private Product composedOf;
 	private int qty;
 	private String location;
-//	private ArrayList<Product> products;
 	
 	public Pallet(Product composedOf, int qty, String location)
 	{
@@ -24,6 +24,15 @@ public class Pallet
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean getOnShelf()
+	{
+		if (this.location.equals("QA") || this.location.equals("LD1") || this.location.equals("LD2") || this.location.equals("LD3"))
+		{
+			return false;
+		}
+		return true;
 	}
 	
 	public Product getComposedOf()
@@ -53,15 +62,11 @@ public class Pallet
 		this.location = location;
 	}
 	
-//	public ArrayList<Product> getProducts()
-//	{
-//		return this.products;
-//	}
-	public void addProduct(Product product)
+	public void addProduct()
 	{
 		this.qty++;
 	}
-	public void removeProduct(Product product)
+	public void removeProduct()
 	{
 		this.qty--;
 	}
