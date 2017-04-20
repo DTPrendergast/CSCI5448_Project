@@ -95,6 +95,7 @@ public class Warehouse {
 			this.getProductFactory().addProduct(prodID, prodType, weight);
 			Pallet pallet = new Pallet(this.getProductFactory().lookupProduct(prodID),
 					palletQty, palletLoc);
+
 			this.addPallet(pallet);
 		}
 		
