@@ -46,6 +46,9 @@ public class InventoryController
 		}
 	}
 	
+	
+		
+	
 	public boolean checkConnection() 
 	{
 		if (conn == null) {
