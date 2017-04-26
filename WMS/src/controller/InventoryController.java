@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import model.ConfigParser;
+
 import java.sql.PreparedStatement;
 
 public class InventoryController 
@@ -14,8 +17,9 @@ public class InventoryController
 	private static final String password = "1234"; // that we set up for our server
 
 	private static final String ip = "172.31.98.152"; // Will have to change this to a static IP
-	private static final boolean debug = true; // If this is true, any exception raised will show the 
-												// explicit error. Otherwise, will client will have to error check
+	private static final boolean debug = true; // If this is true, any exception raised will show error
+	private static final String configFilePath = "config.properties";
+	
 
 	
 	public InventoryController() 
@@ -45,6 +49,26 @@ public class InventoryController
 			return;
 		}
 	}
+	
+	public void init() 
+	{
+		createTable("inventory");
+		ConfigParser config = new ConfigParser();
+		config.readConfig(configFilePath);
+		
+		for (int product = 0; product < config.getNumProds(); product++) 
+		{
+			String prodID = config.getProdID(product);
+			int palletQty = config.getPalletQty(product);
+			
+			addToInventory("inventory", prodID, palletQty);
+									
+		}
+		
+		config.closeInput();	
+	}
+	
+	
 	
 	public boolean checkConnection() 
 	{
@@ -81,7 +105,7 @@ public class InventoryController
 		}	
 	}
 	
-	public boolean addNewItem(String table, int prodID, String prodType, int quantity)  
+	public boolean addNewItem(String table, String prodID, String prodType, int quantity)  
 	{
 		try {
 			PreparedStatement stmt = null;
@@ -89,7 +113,7 @@ public class InventoryController
 						" VALUES(?,?,?)";
 			
 			stmt = conn.prepareStatement(tableSql);
-			stmt.setInt(1, prodID);
+			stmt.setString(1, prodID);
 			stmt.setString(2, prodType);
 			stmt.setInt(3, quantity);
 			stmt.executeUpdate();
@@ -103,7 +127,7 @@ public class InventoryController
 		return false;
 	}
 	
-	public boolean addToInventory(String table, int prodID, int quantityToAdd)
+	public boolean addToInventory(String table, String prodID, int quantityToAdd)
 	{
 		PreparedStatement stmt = null;
 		int oldQuantity = getProductQuantity(table, prodID);
@@ -124,7 +148,7 @@ public class InventoryController
 		}
 	}
 	
-	public boolean removeFromInventory(String table, int prodID, int quantityToRemove)
+	public boolean removeFromInventory(String table, String prodID, int quantityToRemove)
 	{
 		PreparedStatement stmt = null;
 		int oldQuantity = getProductQuantity(table, prodID);
@@ -151,7 +175,7 @@ public class InventoryController
 		return true;
 	}
 	
-	public int getProductQuantity(String table, int prodID) 
+	public int getProductQuantity(String table, String prodID) 
 	{
 		Statement stmt = null;
 		try {
