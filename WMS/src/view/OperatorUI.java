@@ -67,28 +67,39 @@ public class OperatorUI extends JFrame
 	private JButton btnD2;
 	private JButton btnD3;
 	private JButton btnD4;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args)
-//	{
-//		EventQueue.invokeLater(new Runnable()
-//		{
-//			public void run()
-//			{
-//				try
-//				{
-//					OperatorUI frame = new OperatorUI();
-//					frame.setVisible(true);
-//				} 
-//				catch (Exception e)
-//				{
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	private JLabel lblA1;
+	private JLabel lblA2;
+	private JLabel lblA3;
+	private JLabel lblA4;
+	private JLabel lblB1;
+	private JLabel lblB2;
+	private JLabel lblB3;
+	private JLabel lblB4;
+	private JLabel lblC1;
+	private JLabel lblC2;
+	private JLabel lblC3;
+	private JLabel lblC4;
+	private JLabel lblD1;
+	private JLabel lblD2;
+	private JLabel lblD3;
+	private JLabel lblD4;
+	private JLabel lblQaPallet;
+	private JLabel lblLdgDock1Pallet;
+	private JLabel lblLdgDock2Pallet;
+	private JLabel lblLdgDock3Pallet;
+	private JLabel ledFuncRetBot1;
+	private JLabel ledAvailRetBot1;
+	private JLabel ledFuncRetBot2;
+	private JLabel ledAvailRetBot2;
+	private JLabel ledFuncRetBot3;
+	private JLabel ledAvailRetBot3;
+	private JLabel ledFuncFL1;
+	private JLabel ledAvailFL1;
+	private JLabel ledFuncFL2;
+	private JLabel ledAvailFL2;
+	private JLabel ledFuncFL3;
+	private JLabel ledAvailFL3;
+	
 
 	/**
 	 * Create the frame.
@@ -156,13 +167,13 @@ public class OperatorUI extends JFrame
 		lblQaInspectionArea.setAlignmentY(Component.BOTTOM_ALIGNMENT);
 		lblQaInspectionArea.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQaInspectionArea.setFont(new Font("Tahoma", Font.BOLD, 18));
-		
-		String qaLabel = "TES-14     17";
-		JLabel lblQaPallet = new JLabel(qaLabel);
+				
+		lblQaPallet = new JLabel();
 		pnlQaPallet.add(lblQaPallet);
 		pnlQa.setLayout(null);
-		pnlShipCenter.setLayout(new GridLayout(1, 1, 0, 0));
 		
+		
+		pnlShipCenter.setLayout(new GridLayout(1, 1, 0, 0));		
 		JLabel lblShippingCenter = new JLabel("<html><div style='text-align: center;'>Shipping Center</div></html>");
 		lblShippingCenter.setLabelFor(pnlShipCenter);
 		lblShippingCenter.setFont(new Font("Arial", Font.BOLD, 14));
@@ -225,10 +236,10 @@ public class OperatorUI extends JFrame
 		gbl_pnlFuncRetBot1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlFuncRetBot1.setLayout(gbl_pnlFuncRetBot1);
 		
-		JLabel ledFuncRetBot1 = new JLabel("\u2022");
+		ledFuncRetBot1 = new JLabel("\u2022");
 		ledFuncRetBot1.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledFuncRetBot1.setHorizontalAlignment(SwingConstants.CENTER);
-		ledFuncRetBot1.setForeground(new Color(50, 205, 50));
+		ledFuncRetBot1.setForeground(new Color(255, 99, 71));
 		ledFuncRetBot1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_ledFuncRetBot1 = new GridBagConstraints();
 		gbc_ledFuncRetBot1.insets = new Insets(0, 15, 0, 5);
@@ -254,7 +265,7 @@ public class OperatorUI extends JFrame
 		gbl_pnlAvailRetBot1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlAvailRetBot1.setLayout(gbl_pnlAvailRetBot1);
 		
-		JLabel ledAvailRetBot1 = new JLabel("\u2022");
+		ledAvailRetBot1 = new JLabel("\u2022");
 		ledAvailRetBot1.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledAvailRetBot1.setHorizontalAlignment(SwingConstants.CENTER);
 		ledAvailRetBot1.setForeground(new Color(255, 99, 71));
@@ -326,10 +337,10 @@ public class OperatorUI extends JFrame
 		gbl_pnlFuncRetBot2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlFuncRetBot2.setLayout(gbl_pnlFuncRetBot2);
 		
-		JLabel ledFuncRetBot2 = new JLabel("\u2022");
+		ledFuncRetBot2 = new JLabel("\u2022");
 		ledFuncRetBot2.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledFuncRetBot2.setHorizontalAlignment(SwingConstants.CENTER);
-		ledFuncRetBot2.setForeground(new Color(50, 205, 50));
+		ledFuncRetBot2.setForeground(new Color(255, 99, 71));
 		ledFuncRetBot2.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_ledFuncRetBot2 = new GridBagConstraints();
 		gbc_ledFuncRetBot2.insets = new Insets(0, 15, 0, 5);
@@ -355,7 +366,7 @@ public class OperatorUI extends JFrame
 		gbl_pnlAvailRetBot2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlAvailRetBot2.setLayout(gbl_pnlAvailRetBot2);
 		
-		JLabel ledAvailRetBot2 = new JLabel("\u2022");
+		ledAvailRetBot2 = new JLabel("\u2022");
 		ledAvailRetBot2.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledAvailRetBot2.setHorizontalAlignment(SwingConstants.CENTER);
 		ledAvailRetBot2.setForeground(new Color(255, 99, 71));
@@ -427,10 +438,10 @@ public class OperatorUI extends JFrame
 		gbl_pnlFuncRetBot3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlFuncRetBot3.setLayout(gbl_pnlFuncRetBot3);
 		
-		JLabel ledFuncRetBot3 = new JLabel("\u2022");
+		ledFuncRetBot3 = new JLabel("\u2022");
 		ledFuncRetBot3.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledFuncRetBot3.setHorizontalAlignment(SwingConstants.CENTER);
-		ledFuncRetBot3.setForeground(new Color(50, 205, 50));
+		ledFuncRetBot3.setForeground(new Color(255, 99, 71));
 		ledFuncRetBot3.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_ledFuncRetBot3 = new GridBagConstraints();
 		gbc_ledFuncRetBot3.insets = new Insets(0, 15, 0, 5);
@@ -456,7 +467,7 @@ public class OperatorUI extends JFrame
 		gbl_pnlAvailRetBot3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlAvailRetBot3.setLayout(gbl_pnlAvailRetBot3);
 		
-		JLabel ledAvailRetBot3 = new JLabel("\u2022");
+		ledAvailRetBot3 = new JLabel("\u2022");
 		ledAvailRetBot3.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledAvailRetBot3.setHorizontalAlignment(SwingConstants.CENTER);
 		ledAvailRetBot3.setForeground(new Color(255, 99, 71));
@@ -507,7 +518,7 @@ public class OperatorUI extends JFrame
 		rdbtnEnableFL1.setBounds(0, 0, 70, 65);
 		pnlFL1.add(rdbtnEnableFL1);
 		
-		JLabel iconFL1 = new JLabel("");
+		JLabel iconFL1 = new JLabel();
 		iconFL1.setIcon(new ImageIcon(OperatorUI.class.getResource("/View/forklift_64.png")));
 		iconFL1.setOpaque(true);
 		iconFL1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -534,10 +545,10 @@ public class OperatorUI extends JFrame
 		gbl_pnlFuncFL1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlFuncFL1.setLayout(gbl_pnlFuncFL1);
 		
-		JLabel ledFuncFL1 = new JLabel("\u2022");
+		ledFuncFL1 = new JLabel("\u2022");
 		ledFuncFL1.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledFuncFL1.setHorizontalAlignment(SwingConstants.CENTER);
-		ledFuncFL1.setForeground(new Color(50, 205, 50));
+		ledFuncFL1.setForeground(new Color(255, 99, 71));
 		ledFuncFL1.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_ledFuncFL1 = new GridBagConstraints();
 		gbc_ledFuncFL1.insets = new Insets(0, 15, 0, 5);
@@ -563,7 +574,7 @@ public class OperatorUI extends JFrame
 		gbl_pnlAvailFL1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlAvailFL1.setLayout(gbl_pnlAvailFL1);
 		
-		JLabel ledAvailFL1 = new JLabel("\u2022");
+		ledAvailFL1 = new JLabel("\u2022");
 		ledAvailFL1.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledAvailFL1.setHorizontalAlignment(SwingConstants.CENTER);
 		ledAvailFL1.setForeground(new Color(255, 99, 71));
@@ -635,10 +646,10 @@ public class OperatorUI extends JFrame
 		gbl_pnlFuncFL2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlFuncFL2.setLayout(gbl_pnlFuncFL2);
 		
-		JLabel ledFuncFL2 = new JLabel("\u2022");
+		ledFuncFL2 = new JLabel("\u2022");
 		ledFuncFL2.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledFuncFL2.setHorizontalAlignment(SwingConstants.CENTER);
-		ledFuncFL2.setForeground(new Color(50, 205, 50));
+		ledFuncFL2.setForeground(new Color(255, 99, 71));
 		ledFuncFL2.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_ledFuncFL2 = new GridBagConstraints();
 		gbc_ledFuncFL2.insets = new Insets(0, 15, 0, 5);
@@ -664,7 +675,7 @@ public class OperatorUI extends JFrame
 		gbl_pnlAvailFL2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlAvailFL2.setLayout(gbl_pnlAvailFL2);
 		
-		JLabel ledAvailFL2 = new JLabel("\u2022");
+		ledAvailFL2 = new JLabel("\u2022");
 		ledAvailFL2.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledAvailFL2.setHorizontalAlignment(SwingConstants.CENTER);
 		ledAvailFL2.setForeground(new Color(255, 99, 71));
@@ -736,10 +747,10 @@ public class OperatorUI extends JFrame
 		gbl_pnlFuncFL3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlFuncFL3.setLayout(gbl_pnlFuncFL3);
 		
-		JLabel ledFuncFL3 = new JLabel("\u2022");
+		ledFuncFL3 = new JLabel("\u2022");
 		ledFuncFL3.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledFuncFL3.setHorizontalAlignment(SwingConstants.CENTER);
-		ledFuncFL3.setForeground(new Color(50, 205, 50));
+		ledFuncFL3.setForeground(new Color(255, 99, 71));
 		ledFuncFL3.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		GridBagConstraints gbc_ledFuncFL3 = new GridBagConstraints();
 		gbc_ledFuncFL3.insets = new Insets(0, 15, 0, 5);
@@ -765,7 +776,7 @@ public class OperatorUI extends JFrame
 		gbl_pnlAvailFL3.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlAvailFL3.setLayout(gbl_pnlAvailFL3);
 		
-		JLabel ledAvailFL3 = new JLabel("\u2022");
+		ledAvailFL3 = new JLabel("\u2022");
 		ledAvailFL3.setHorizontalTextPosition(SwingConstants.CENTER);
 		ledAvailFL3.setHorizontalAlignment(SwingConstants.CENTER);
 		ledAvailFL3.setForeground(new Color(255, 99, 71));
@@ -814,25 +825,25 @@ public class OperatorUI extends JFrame
 		JPanel pnlA1 = new JPanel();
 		pnlA1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblA1 = new JLabel("TES-14     17");
+		lblA1 = new JLabel();
 		pnlA1.add(lblA1);
-		
+				
 		JPanel pnlA2 = new JPanel();
 		pnlA2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblA2 = new JLabel("TES-14     17");
+		lblA2 = new JLabel();
 		pnlA2.add(lblA2);
 		
 		JPanel pnlA3 = new JPanel();
 		pnlA3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblA3 = new JLabel("TES-14     17");
+		lblA3 = new JLabel();
 		pnlA3.add(lblA3);
 		
 		JPanel pnlA4 = new JPanel();
 		pnlA4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblA4 = new JLabel("TES-14     17");
+		lblA4 = new JLabel();
 		pnlA4.add(lblA4);
 		
 		btnA1 = new JButton("A1");
@@ -907,25 +918,25 @@ public class OperatorUI extends JFrame
 		JPanel pnlB1 = new JPanel();
 		pnlB1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblB1 = new JLabel("TES-14     17");
+		lblB1 = new JLabel();
 		pnlB1.add(lblB1);
 		
 		JPanel pnlB2 = new JPanel();
 		pnlB2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblB2 = new JLabel("TES-14     17");
+		lblB2 = new JLabel();
 		pnlB2.add(lblB2);
 		
 		JPanel pnlB3 = new JPanel();
 		pnlB3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblB3 = new JLabel("TES-14     17");
+		lblB3 = new JLabel();
 		pnlB3.add(lblB3);
 		
 		JPanel pnlB4 = new JPanel();
 		pnlB4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblB4 = new JLabel("TES-14     17");
+		lblB4 = new JLabel();
 		pnlB4.add(lblB4);		
 		
 		btnB1 = new JButton("B1");
@@ -1002,25 +1013,25 @@ public class OperatorUI extends JFrame
 		JPanel pnlC1 = new JPanel();
 		pnlC1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblC1 = new JLabel("TES-14     17");
+		lblC1 = new JLabel();
 		pnlC1.add(lblC1);
 		
 		JPanel pnlC2 = new JPanel();
 		pnlC2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblC2 = new JLabel("TES-14     17");
+		lblC2 = new JLabel();
 		pnlC2.add(lblC2);
 
 		JPanel pnlC3 = new JPanel();
 		pnlC3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblC3 = new JLabel("TES-14     17");
+		lblC3 = new JLabel();
 		pnlC3.add(lblC3);
 		
 		JPanel pnlC4 = new JPanel();
 		pnlC4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblC4 = new JLabel("TES-14     17");
+		lblC4 = new JLabel();
 		pnlC4.add(lblC4);
 				
 		btnC1 = new JButton("C1");
@@ -1097,25 +1108,25 @@ public class OperatorUI extends JFrame
 		JPanel pnlD1 = new JPanel();
 		pnlD1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblD1 = new JLabel("TES-14     17");
+		lblD1 = new JLabel();
 		pnlD1.add(lblD1);
 		
 		JPanel pnlD2 = new JPanel();
 		pnlD2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblD2 = new JLabel("TES-14     17");
+		lblD2 = new JLabel();
 		pnlD2.add(lblD2);
 
 		JPanel pnlD3 = new JPanel();
 		pnlD3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblD3 = new JLabel("TES-14     17");
+		lblD3 = new JLabel();
 		pnlD3.add(lblD3);
 		
 		JPanel pnlD4 = new JPanel();
 		pnlD4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
-		JLabel lblD4 = new JLabel("TES-14     17");
+		lblD4 = new JLabel();
 		pnlD4.add(lblD4);
 				
 		btnD1 = new JButton("D1");
@@ -1196,9 +1207,8 @@ public class OperatorUI extends JFrame
 		
 		JPanel pnlLdgDock1Pallet = new JPanel();
 		pnlLdgDock1Pallet.setBorder(new LineBorder(new Color(0, 0, 0)));
-		
-		String LdgDock1Label = "COF-08     20";
-		JLabel lblLdgDock1Pallet = new JLabel(LdgDock1Label);
+				
+		lblLdgDock1Pallet = new JLabel();
 		pnlLdgDock1Pallet.add(lblLdgDock1Pallet);
 		
 		btnLD1Select = new JButton("Select Pallet");
@@ -1239,9 +1249,8 @@ public class OperatorUI extends JFrame
 		
 		JPanel pnlLdgDock2Pallet = new JPanel();
 		pnlLdgDock2Pallet.setBorder(new LineBorder(new Color(0, 0, 0)));
-		
-		String LdgDock2Label = "BLE-21     35";
-		JLabel lblLdgDock2Pallet = new JLabel(LdgDock2Label);
+				
+		lblLdgDock2Pallet = new JLabel();
 		pnlLdgDock2Pallet.add(lblLdgDock2Pallet);
 		
 		btnLD2Select = new JButton("Select Pallet");
@@ -1288,9 +1297,8 @@ public class OperatorUI extends JFrame
 		
 		JPanel pnlLdgDock3Pallet = new JPanel();
 		pnlLdgDock3Pallet.setBorder(new LineBorder(new Color(0, 0, 0)));
-		
-		String LdgDock3Label = "";
-		JLabel lblLdgDock3Pallet = new JLabel(LdgDock3Label);
+				
+		lblLdgDock3Pallet = new JLabel();
 		pnlLdgDock3Pallet.add(lblLdgDock3Pallet);
 		
 		JLabel lblLoadingDock_2 = new JLabel("Loading Dock 3");
@@ -1364,5 +1372,76 @@ public class OperatorUI extends JFrame
 		destButtons.add(btnD4);
 		
 		return destButtons;
+	}
+	public ArrayList<JLabel> getPalletLabels()
+	{
+		ArrayList<JLabel> palletLabels = new ArrayList<JLabel>();
+		palletLabels.add(lblA1);
+		palletLabels.add(lblA2);
+		palletLabels.add(lblA3);
+		palletLabels.add(lblA4);
+		palletLabels.add(lblB1);
+		palletLabels.add(lblB2);
+		palletLabels.add(lblB3);
+		palletLabels.add(lblB4);
+		palletLabels.add(lblC1);
+		palletLabels.add(lblC2);
+		palletLabels.add(lblC3);
+		palletLabels.add(lblC4);
+		palletLabels.add(lblD1);
+		palletLabels.add(lblD2);
+		palletLabels.add(lblD3);
+		palletLabels.add(lblD4);
+		palletLabels.add(lblQaPallet);
+		palletLabels.add(lblLdgDock1Pallet);
+		palletLabels.add(lblLdgDock2Pallet);
+		palletLabels.add(lblLdgDock3Pallet);
+		
+		return palletLabels;
+	}
+	public ArrayList<JLabel> getForkliftLEDs()
+	{
+		ArrayList<JLabel> forkliftLEDs = new ArrayList<JLabel>();
+		forkliftLEDs.add(ledFuncFL1);
+		forkliftLEDs.add(ledAvailFL1);
+		forkliftLEDs.add(ledFuncFL2);
+		forkliftLEDs.add(ledAvailFL2);
+		forkliftLEDs.add(ledFuncFL3);
+		forkliftLEDs.add(ledAvailFL3);
+		
+		return forkliftLEDs;
+	}
+	public ArrayList<JLabel> getRetBotLEDs()
+	{
+		ArrayList<JLabel> retbotLEDs = new ArrayList<JLabel>();
+		retbotLEDs.add(ledFuncRetBot1);
+		retbotLEDs.add(ledAvailRetBot1);
+		retbotLEDs.add(ledFuncRetBot2);
+		retbotLEDs.add(ledAvailRetBot2);
+		retbotLEDs.add(ledFuncRetBot3);
+		retbotLEDs.add(ledAvailRetBot3);
+		
+		return retbotLEDs;
+	}
+	public int getPalletLabelIndex(String shelf)
+	{		
+		int index = -100;
+		char shelfGroup = shelf.charAt(0);
+		int shelfNo = Character.getNumericValue(shelf.charAt(1));	
+		
+		System.out.println("Shelf " + shelf + "; group " + shelfGroup + "; no " + shelfNo);
+		
+		if (shelfGroup=='A') index = (0*4)+(shelfNo-1);
+		else if (shelfGroup=='B') index = (1*4)+(shelfNo-1);
+		else if (shelfGroup=='C') index = (2*4)+(shelfNo-1);
+		else if (shelfGroup=='D') index = (3*4)+(shelfNo-1);
+		else if (shelf.equals("QA")) index = 16;
+		else if (shelf.equals("LD1")) index = 17;
+		else if (shelf.equals("LD2")) index = 18;
+		else if (shelf.equals("LD3")) index = 19;
+		
+		System.out.println(index);
+		
+		return index;
 	}
 }

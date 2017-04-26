@@ -13,9 +13,7 @@ public abstract class RobotFactory
 		else if (robotType=="RetBot")
 		{
 			robot = new RetBot();
-		}
-		
+		}		
 		return robot;
 	}
-
 }

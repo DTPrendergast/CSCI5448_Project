@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-public class Warehouse {
+public class Warehouse extends Observable {
 	private ArrayList<Forklift> forklifts;
 	private ArrayList<RetBot> retbots;
 	private ArrayList<Pallet> pallets;
@@ -23,13 +23,14 @@ public class Warehouse {
 	}	
 	public void addForklift(Forklift forklift)
 	{
+		
 		this.forklifts.add(forklift);
+		forklift.setID("FL-" + forklifts.size());		
 	}
 	public void removeForklift(Forklift forklift)
 	{
 		this.forklifts.remove(forklift);
 	}
-	
 	public ArrayList<RetBot> getRetBots()
 	{
 		return this.retbots;
@@ -37,25 +38,24 @@ public class Warehouse {
 	public void addRetBot(RetBot retbot)
 	{
 		this.retbots.add(retbot);
+		retbot.setID("RB-" + retbots.size());		
 	}
 	public void removeRetBot(RetBot retbot)
 	{
 		this.retbots.remove(retbot);
 	}
-	
 	public ArrayList<Pallet> getPallets()
 	{
 		return this.pallets;
 	}	
 	public void addPallet(Pallet pallet)
 	{
-		this.pallets.add(pallet);
+		this.pallets.add(pallet);		
 	}
 	public void removePallet(Pallet pallet)
 	{
 		this.pallets.remove(pallet);
 	}
-	
 	public ProductFactory getProductFactory()
 	{
 		return this.productFactory;
@@ -64,7 +64,6 @@ public class Warehouse {
 	{
 		this.productFactory = productFactory;
 	}
-	
 	public Warehouse initWarehouse()
 	{
 		ConfigParser config = new ConfigParser();
@@ -102,8 +101,6 @@ public class Warehouse {
 		config.closeInput();
 		return this;
 	}
-
-	
 	public Pallet findPallet(String location)
 	{
 		for (Pallet pallet: this.pallets)
@@ -126,7 +123,6 @@ public class Warehouse {
 		System.out.println("Error:  No pallet on the shelves contains that product!");
 		return null;
 	}
-	
 	public Forklift assignForklift()
 	{		
 		for (Forklift forklift: this.forklifts)
@@ -139,7 +135,6 @@ public class Warehouse {
 		System.out.println("Error:  No Forklift available!");
 		return null;
 	}
-	
 	public RetBot assignRetBot()
 	{
 		for (RetBot retbot: this.retbots)
@@ -153,6 +148,4 @@ public class Warehouse {
 		return null;
 	}
 	
-
-
 }
