@@ -16,9 +16,15 @@ public class Driver
 		
 		WarehouseController warehouseController = new WarehouseController();
 		warehouseController.init();		
+		
 		warehouseController.getOperatorUI().setVisible(true);
 				
 		// Run simulators for orders and arriving trucks
 
+		//sim for incoming pallets at the loading doc
+		Simulators.incomingPalletsSim(warehouseController);
+		
+		//sim for incoming order
+		Simulators.incomingOrdersSim(warehouseController); 
 	}
 }
