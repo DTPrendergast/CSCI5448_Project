@@ -82,6 +82,8 @@ public class WarehouseController
 		this.warehouse.addPallet(pallet);
 		pallet.addObserver(this.modelObserver);
 		pallet.indicateChange();
+		this.inventoryController.addNewItem("inventory", product.getProdID(), 
+											product.getProdType(), qty);
 	}
 	public void handleMovePallet(Pallet pallet, String locB)
 	{
@@ -96,7 +98,8 @@ public class WarehouseController
 		}).start();	
 		
 		// TODO:  Add code to adjust database	
-		this.inventoryController.addToInventory("inventory", product.getProdID(), qty);
+		this.inventoryController.addToInventory("inventory", pallet.getComposedOf().getProdID(),
+												pallet.getQty());
 	}
 	public int handleCancelMove(Forklift forklift)
 	{
