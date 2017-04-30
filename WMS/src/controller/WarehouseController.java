@@ -51,7 +51,7 @@ public class WarehouseController
 	public void init()
 	{
 		// Code to initialize state of the warehouse and establish listeners
-		//this.inventoryController.init();
+		this.inventoryController.init();
 		this.buttonHandler.attachListeners();		
 		this.warehouse.initWarehouse();
 		this.modelObserver.addObserver();

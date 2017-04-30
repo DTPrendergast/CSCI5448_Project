@@ -10,6 +10,8 @@ public class JDBCtest {
 		if (conn.checkConnection()) 
 			System.out.println("Connection established");
 		
+		
+		
 		if (conn.createTable("inventory"))
 			System.out.println("Inventory created");
 		else

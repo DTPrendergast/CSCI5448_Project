@@ -14,9 +14,9 @@ import java.sql.PreparedStatement;
 public class InventoryController 
 {
 	private Connection conn = null;
-	private static final String username = "CSCI5448"; // This will have to reflect the u/n and pw 
+	private static final String username = "root"; // This will have to reflect the u/n and pw 
 	private static final String password = "1234"; // that we set up for our server
-	private static final String ip = "172.31.98.152"; // Will have to change this to a static IP
+	private static final String ip = "127.0.0.1"; // Will have to change this to a static IP
 	private static final boolean debug = true; // If this is true, any exception raised will show error
 	private static final String configFilePath = "config.properties";
 	
@@ -34,11 +34,11 @@ public class InventoryController
 		try {
 			if (debug) {
 				conn = DriverManager.getConnection("jdbc:mysql://" + "127.0.0.1" 
-						+ ":3306/INVENTORY", "root", password);
+						+ ":3306/", "root", password);
 
 			} else {
 				conn = DriverManager.getConnection("jdbc:mysql://" + ip 
-						+ ":3306/INVENTORY", username, password);
+						+ ":3306/", username, password);
 			}
 		} catch (SQLException e) {
 			System.out.println("Connection failed.");
@@ -46,9 +46,20 @@ public class InventoryController
 				e.printStackTrace();
 			return;
 		}
+		createDB();
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			stmt.execute("use inventory");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
 	}
 	
-
 	public void init() 
 	{
 		createTable("inventory");
@@ -58,8 +69,9 @@ public class InventoryController
 		for (int product = 0; product < config.getNumProds(); product++) 
 		{
 			String prodID = config.getProdID(product);
+			String prodType = config.getProdType(product);
 			int palletQty = config.getPalletQty(product);
-			
+			addNewItem("inventory", prodID, prodType, palletQty);
 			addToInventory("inventory", prodID, palletQty);
 									
 		}
@@ -67,6 +79,19 @@ public class InventoryController
 		config.closeInput();	
 	}
 	
+	public void createDB()
+	{
+		try{
+			Statement stmt = null;
+			String dBSql = "create database inventory";
+			stmt = conn.createStatement();
+			stmt.executeUpdate(dBSql);
+		} catch (SQLException e) {
+			if (debug) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public void printDatabase(String name) 
 	{
@@ -161,6 +186,7 @@ public class InventoryController
 	public boolean addToInventory(String table, String prodID, int quantityToAdd)
 	{
 		PreparedStatement stmt = null;
+		System.out.println("Table = " + table + "; " +prodID);
 		int oldQuantity = getProductQuantity(table, prodID);
 		
 		String updateTable = "UPDATE " + table +  " SET quantity = ? " 
@@ -217,7 +243,10 @@ public class InventoryController
 			return -1;
 		}
 		
+		System.out.println("table is ... " + table + "; prodID... " + prodID);
 		String sql = "SELECT quantity FROM " + table + " WHERE prodID = " + prodID;
+		
+		System.out.println(sql);
 		
 		try {
 			ResultSet rs = stmt.executeQuery(sql);

@@ -15,7 +15,8 @@ public class Driver
 		sc = new Scanner(System.in);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("********** Warehouse Management System **********");
-		System.out.print("Select Operating Mode (1=Sim, 2=Real Operations, 3=Inventory Management): ");
+		System.out.print("Select Operating Mode (1=Sim Warehouse Operations, 2=Real Operations, "
+						+ "3=Sim Inventory Management): ");
 		int mode = sc.nextInt();
 		
 
@@ -24,6 +25,10 @@ public class Driver
 			WarehouseController warehouseController = new WarehouseController();
 			warehouseController.init();		
 			warehouseController.getOperatorUI().setVisible(true);
+			
+			//sim for incoming orders and arriving pallets
+			Simulators.incomingOrdersSim(warehouseController);
+			Simulators.incomingPalletsSim(warehouseController);
 		}
 		else if (mode == 2)
 		{
@@ -32,6 +37,7 @@ public class Driver
 		else if (mode == 3)
 		{
 			InventoryController conn = new InventoryController();
+			conn.init();
 			int invMode;
 			do {
 				System.out.print("Select function (1=add new product, 2=add quantity,"
@@ -83,19 +89,7 @@ public class Driver
 		}
 		else {
 			System.out.println("Invalid input. Exiting.");
-		}
-
-				
-		
-		if (mode==1)
-		{
-			//sim for incoming pallets at the loading doc
-			Simulators.incomingPalletsSim(warehouseController);
-			
-			//sim for incoming order
-			Simulators.incomingOrdersSim(warehouseController);
-		}
-
+		}	
 		 
 	}
 }
