@@ -3,6 +3,7 @@ package controller;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -15,12 +16,9 @@ public class InventoryController
 	private Connection conn = null;
 	private static final String username = "CSCI5448"; // This will have to reflect the u/n and pw 
 	private static final String password = "1234"; // that we set up for our server
-
 	private static final String ip = "172.31.98.152"; // Will have to change this to a static IP
 	private static final boolean debug = true; // If this is true, any exception raised will show error
 	private static final String configFilePath = "config.properties";
-	
-
 	
 	public InventoryController() 
 	{
@@ -70,6 +68,38 @@ public class InventoryController
 	}
 	
 
+	public void printDatabase(String name) 
+	{
+		Statement stmt = null;
+		
+		try {
+			stmt = conn.createStatement();
+		} catch (SQLException e) {
+			if (debug) {
+				e.printStackTrace();
+			}
+			return;
+		}
+		
+		String sql = "SELECT * FROM " + name;
+				
+		try {
+			ResultSet rs = stmt.executeQuery(sql);
+			ResultSetMetaData meta = rs.getMetaData();
+			int columns = meta.getColumnCount();
+			
+			while (rs.next()) {
+				for (int i = 1; i <= columns; i++) 
+					System.out.print(rs.getString(i) + " ");
+				
+				System.out.println();
+			}
+		} catch(SQLException e) {
+			if (debug)
+				e.printStackTrace();
+			return;
+		}
+	}
 	
 	public boolean checkConnection() 
 	{
