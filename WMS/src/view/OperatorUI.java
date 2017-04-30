@@ -99,6 +99,7 @@ public class OperatorUI extends JFrame
 	private JLabel ledAvailFL2;
 	private JLabel ledFuncFL3;
 	private JLabel ledAvailFL3;
+	private JLabel lblOrderedProduct;
 	
 
 	/**
@@ -185,6 +186,22 @@ public class OperatorUI extends JFrame
 		pnlQa.add(btnQa);
 		pnlQa.add(pnlQaDropoff);
 		pnlQa.add(lblQaInspectionArea);
+		
+		JPanel pnlOrderedProduct = new JPanel();
+		pnlOrderedProduct.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pnlOrderedProduct.setAlignmentY(1.0f);
+		pnlOrderedProduct.setAlignmentX(1.0f);
+		pnlOrderedProduct.setBounds(164, 90, 135, 31);
+		pnlQa.add(pnlOrderedProduct);
+		
+		lblOrderedProduct = new JLabel();
+		pnlOrderedProduct.add(lblOrderedProduct);
+		
+		JLabel lblIncomingOrder = new JLabel("Incoming Order");
+		lblIncomingOrder.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIncomingOrder.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblIncomingOrder.setBounds(164, 61, 135, 20);
+		pnlQa.add(lblIncomingOrder);
 		
 		JPanel pnlRobots = new JPanel();
 		pnlRobots.setBounds(38, 152, 372, 531);
@@ -1428,9 +1445,7 @@ public class OperatorUI extends JFrame
 		int index = -100;
 		char shelfGroup = shelf.charAt(0);
 		int shelfNo = Character.getNumericValue(shelf.charAt(1));	
-		
-		System.out.println("Shelf " + shelf + "; group " + shelfGroup + "; no " + shelfNo);
-		
+				
 		if (shelfGroup=='A') index = (0*4)+(shelfNo-1);
 		else if (shelfGroup=='B') index = (1*4)+(shelfNo-1);
 		else if (shelfGroup=='C') index = (2*4)+(shelfNo-1);
@@ -1440,8 +1455,10 @@ public class OperatorUI extends JFrame
 		else if (shelf.equals("LD2")) index = 18;
 		else if (shelf.equals("LD3")) index = 19;
 		
-		System.out.println(index);
-		
 		return index;
+	}
+	public JLabel getOrderedProductLabel()
+	{
+		return lblOrderedProduct;
 	}
 }

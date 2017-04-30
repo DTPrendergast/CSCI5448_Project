@@ -31,22 +31,19 @@ public class ModelObserver implements Observer
 		for (Pallet pallet : pallets)
 		{
 			pallet.addObserver(this);
-			pallet.indicateChange();
-			System.out.println("pallet observed");
+			pallet.indicateChange();			
 		}		
 		ArrayList<Forklift> forklifts = warehouseController.getWarehouse().getForklifts();
 		for (Forklift forklift : forklifts)
 		{
 			forklift.addObserver(this);
-			forklift.indicateChange();
-			System.out.println("forklift observed");
+			forklift.indicateChange();			
 		}		
 		ArrayList<RetBot> retbots = warehouseController.getWarehouse().getRetBots();
 		for (RetBot retbot : retbots)
 		{
 			retbot.addObserver(this);
-			retbot.indicateChange();
-			System.out.println("retbot observed");
+			retbot.indicateChange();			
 		}		
 	}
 	@Override
@@ -103,12 +100,9 @@ public class ModelObserver implements Observer
 			
 			if (!(pallet.getLocation().equals("n/a")))
 			{
-				int currLocIndex = this.warehouseController.getOperatorUI().getPalletLabelIndex(pallet.getLocation());
-				System.out.println(currLocIndex);
+				int currLocIndex = this.warehouseController.getOperatorUI().getPalletLabelIndex(pallet.getLocation());				
 				palletLabels.get(currLocIndex).setText(pallet.getComposedOf().getProdID() + "         " + pallet.getQty());
 			}			
-			
-			System.out.println("=================Pallet status has changed.... location = " + pallet.getLocation());		
 			
 		}		
 	}

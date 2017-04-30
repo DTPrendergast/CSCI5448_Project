@@ -13,6 +13,7 @@ import javax.swing.*;
 
 public class WarehouseController
 {
+	private InventoryController inventoryController;
 	private Warehouse warehouse;
 	private OperatorUI operatorUI;	
 	private ButtonHandler buttonHandler;
@@ -20,12 +21,17 @@ public class WarehouseController
 			
 	public WarehouseController()
 	{
+		this.inventoryController = new InventoryController();
 		this.warehouse = new Warehouse();
 		this.operatorUI = new OperatorUI();
 		this.buttonHandler = new ButtonHandler(this);
 		this.modelObserver = new ModelObserver(this);
 	}
 	
+	public InventoryController getInventoryController()
+	{
+		return this.inventoryController;
+	}
 	public Warehouse getWarehouse()
 	{
 		return this.warehouse;
@@ -45,6 +51,7 @@ public class WarehouseController
 	public void init()
 	{
 		// Code to initialize state of the warehouse and establish listeners
+		//this.inventoryController.init();
 		this.buttonHandler.attachListeners();		
 		this.warehouse.initWarehouse();
 		this.modelObserver.addObserver();
@@ -53,6 +60,9 @@ public class WarehouseController
 	}
 	public void handleOrder(Product product, int qty)
 	{
+		// Display the incoming order on the UI
+		this.getOperatorUI().getOrderedProductLabel().setText(product.getProdID() + "      " + qty);
+		
 		// Select the appropriate RetBot
 		RetBot retbot = this.warehouse.assignRetBot();
 		
@@ -66,7 +76,8 @@ public class WarehouseController
 		    }
 		}).start();	
 		
-		// TODO:  Code to adjust the database		
+		// TODO:  Code to adjust the database	
+		this.inventoryController.removeFromInventory("inventory", product.getProdID(), qty);
 	}
 	public void handleScanPallet(Product product, int qty, String location)
 	{
@@ -74,6 +85,8 @@ public class WarehouseController
 		this.warehouse.addPallet(pallet);
 		pallet.addObserver(this.modelObserver);
 		pallet.indicateChange();
+		this.inventoryController.addNewItem("inventory", product.getProdID(), 
+											product.getProdType(), qty);
 	}
 	public void handleMovePallet(Pallet pallet, String locB)
 	{
@@ -87,7 +100,9 @@ public class WarehouseController
 		    }
 		}).start();	
 		
-		// TODO:  Add code to adjust database		
+		// TODO:  Add code to adjust database	
+		this.inventoryController.addToInventory("inventory", pallet.getComposedOf().getProdID(),
+												pallet.getQty());
 	}
 	public int handleCancelMove(Forklift forklift)
 	{

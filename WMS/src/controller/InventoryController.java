@@ -48,6 +48,7 @@ public class InventoryController
 		}
 	}
 	
+
 	public void init() 
 	{
 		createTable("inventory");
@@ -66,6 +67,7 @@ public class InventoryController
 		config.closeInput();	
 	}
 	
+
 	public void printDatabase(String name) 
 	{
 		Statement stmt = null;
