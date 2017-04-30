@@ -17,7 +17,7 @@ public class InventoryController
 	private static final String username = "root"; // This will have to reflect the u/n and pw 
 	private static final String password = "1234"; // that we set up for our server
 	private static final String ip = "127.0.0.1"; // Will have to change this to a static IP
-	private static final boolean debug = true; // If this is true, any exception raised will show error
+	private static final boolean debug = false; // If this is true, any exception raised will show error
 	private static final String configFilePath = "config.properties";
 	
 	public InventoryController() 
@@ -62,6 +62,18 @@ public class InventoryController
 	
 	public void init() 
 	{
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate("DROP TABLE inventory");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+		
+		
 		createTable("inventory");
 		ConfigParser config = new ConfigParser();
 		config.readConfig(configFilePath);
@@ -71,7 +83,9 @@ public class InventoryController
 			String prodID = config.getProdID(product);
 			String prodType = config.getProdType(product);
 			int palletQty = config.getPalletQty(product);
-			addNewItem("inventory", prodID, prodType, palletQty);
+			if (addNewItem("inventory", prodID, prodType, palletQty))
+				continue;				
+			
 			addToInventory("inventory", prodID, palletQty);
 									
 		}
@@ -186,11 +200,10 @@ public class InventoryController
 	public boolean addToInventory(String table, String prodID, int quantityToAdd)
 	{
 		PreparedStatement stmt = null;
-		System.out.println("Table = " + table + "; " +prodID);
 		int oldQuantity = getProductQuantity(table, prodID);
 		
 		String updateTable = "UPDATE " + table +  " SET quantity = ? " 
-				+ "WHERE prodID = " + prodID;
+				+ "WHERE prodID = '" + prodID + "'";
 		
 		try {
 			int newQuantity = oldQuantity + quantityToAdd; 
@@ -211,7 +224,7 @@ public class InventoryController
 		int oldQuantity = getProductQuantity(table, prodID);
 		
 		String updateTable = "UPDATE " + table + " SET quantity = ? " 
-				+ "WHERE prodID = " + prodID;
+				+ "WHERE prodID = '" + prodID + "'";
 		
 		try {
 			int newQuantity = oldQuantity - quantityToRemove; 
@@ -242,16 +255,13 @@ public class InventoryController
 				e.printStackTrace();
 			return -1;
 		}
-		
-		System.out.println("table is ... " + table + "; prodID... " + prodID);
-		String sql = "SELECT quantity FROM " + table + " WHERE prodID = " + prodID;
-		
-		System.out.println(sql);
-		
+			
+		String sql = "SELECT quantity FROM " + table + " WHERE prodID = '" + prodID + "'";
+				
 		try {
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
-			return rs.getInt(1);
+			return rs.getInt("quantity");
 		} catch (SQLException e) {
 			if (debug)
 				e.printStackTrace();

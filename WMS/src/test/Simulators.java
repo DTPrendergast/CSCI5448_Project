@@ -28,10 +28,8 @@ public static void incomingPalletsSim(WarehouseController warehouseC) {
 		                String type = productNames[nameIndex];
 		                String ID = type.substring(0, 3).toUpperCase();
 		                if (nameNum < 10) {
-		                        ID = ID.concat("-0");
-		                } else {
-		                        ID = ID.concat("-");
-		                }
+		                        ID = ID.concat("0");
+		                } 
 		                ID = ID.concat(nameNum.toString());
 		                
 		                Product incoming = new Product(ID,type,weight);
