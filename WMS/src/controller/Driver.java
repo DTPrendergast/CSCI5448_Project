@@ -9,6 +9,7 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
+		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("********** Warehouse Management System **********");
 		System.out.println("Select Operating Mode (1=Sim, 2=Real Operations): ");
@@ -19,12 +20,16 @@ public class Driver
 		
 		warehouseController.getOperatorUI().setVisible(true);
 				
-		// Run simulators for orders and arriving trucks
-
-		//sim for incoming pallets at the loading doc
-		Simulators.incomingPalletsSim(warehouseController);
 		
-		//sim for incoming order
-		Simulators.incomingOrdersSim(warehouseController); 
+		if (mode==1)
+		{
+			//sim for incoming pallets at the loading doc
+			Simulators.incomingPalletsSim(warehouseController);
+			
+			//sim for incoming order
+			Simulators.incomingOrdersSim(warehouseController);
+		}
+
+		 
 	}
 }

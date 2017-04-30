@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PackageAnalysis>
+    <Package name="controller" x="459" y="357">
+        <DependencyLink destination="view"/>
+        <DependencyLink destination="test"/>
+        <DependencyLink destination="model"/>
+    </Package>
+    <Package name="model" x="728" y="577"/>
+    <Package name="test" x="774" y="360">
+        <DependencyLink destination="controller"/>
+        <DependencyLink destination="model"/>
+    </Package>
+    <Package name="view" x="168" y="594"/>
+</PackageAnalysis>

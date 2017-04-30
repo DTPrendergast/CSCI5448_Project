@@ -79,18 +79,28 @@ public class ButtonHandler implements ActionListener
 		if (command[0].equals("Pallet"))
 		{
 			this.selectedPallet = this.warehouseController.getWarehouse().findPallet(command[1]);
-			System.out.println("pallet is .." + this.selectedPallet.getComposedOf());
+			System.out.println("Selected pallet is at " + this.selectedPallet.getLocation() + 
+					" and is composed of "	+ this.selectedPallet.getComposedOf().getProdID());
 		}
 		
 		else if (command[0].equals("Destination") & !(this.selectedPallet==null))
 		{
 			this.warehouseController.handleMovePallet(this.selectedPallet, command[1]);
 			this.selectedPallet = null;
+			System.out.println("Selected pallet will be moved to " + command[1]);
 		}
 		else if (command[0].equals("Enable"))
 		{
-			// TODO
-			System.out.println("Functionality not implemented.");
+			int index = Integer.parseInt(command[2]);
+			
+			if (command[1].equals("Forklift"))
+			{
+				this.getWarehouseController().getWarehouse().getForklifts().get(index).setFunctional(false);
+			}
+			else if (command[1].equals("RetBot"))
+			{
+				this.getWarehouseController().getWarehouse().getRetBots().get(index).setFunctional(false);
+			}			
 		}		
 	}
 

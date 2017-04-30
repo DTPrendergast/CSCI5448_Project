@@ -26,6 +26,10 @@ public class RetBot extends Robot
 		// Change location of robot and indicate carrying object
 		this.setLocation(pallet.getLocation());
 		this.setCarryingObj(true);
+		
+		System.out.println("Bender picked up " + qty + " x " + pallet.getComposedOf().getProdType() 
+						+ " from shelf " + pallet.getLocation());
+		
 		for (int i=0; i<qty; i++)
 		{
 			pallet.removeProduct();
@@ -44,6 +48,9 @@ public class RetBot extends Robot
 		// Change location of robot, indicate not carrying object,
 		// and indicate not busy
 		this.setLocation("Shipping Center");
+		System.out.println("Bender dropped off " + qty + " x " + pallet.getComposedOf().getProdType() 
+				+ " at the Shipping Center");
+		
 		this.setCarryingObj(false);
 		this.setBusy(false);
 						

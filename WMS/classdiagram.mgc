@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="controller.WarehouseController" x="608" y="381">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="controller.InventoryController"
+            endpointName="inventoryController" kind="Simple"/>
+        <Association destinationClassName="controller.ModelObserver"
+            endpointName="modelObserver" kind="Simple">
+            <Point x="554" y="750"/>
+        </Association>
+        <Communication destinationClassName="controller.InventoryController"/>
+        <Communication destinationClassName="controller.ModelObserver"/>
+    </Class>
+    <Class name="controller.InventoryController" x="175" y="384">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="controller.Driver" x="504" y="195">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Communication destinationClassName="controller.WarehouseController"/>
+    </Class>
+    <Class name="controller.ModelObserver" x="418" y="853">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="controller.WarehouseController"
+            endpointName="warehouseController" kind="Simple">
+            <Point x="716" y="774"/>
+        </Association>
+    </Class>
+</ClassDiagram>

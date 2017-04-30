@@ -6,11 +6,11 @@ public abstract class RobotFactory
 	{
 		Robot robot = null;
 		
-		if (robotType=="Forklift")
+		if (robotType.equals("Forklift"))
 		{
 			robot = new Forklift();
 		}
-		else if (robotType=="RetBot")
+		else if (robotType.equals("RetBot"))
 		{
 			robot = new RetBot();
 		}		
