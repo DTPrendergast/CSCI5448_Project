@@ -18,7 +18,7 @@ public class InventoryController
 	private static final String password = "1234"; // that we set up for our server
 	private static final String ip = "127.0.0.1"; // Will have to change this to a static IP
 	private static final boolean debug = false; // If this is true, any exception raised will show error
-	private static final String configFilePath = "config.properties";
+	private static final String configFilePath = "/Users/jonathanmagiera/Documents/CU/CS5448/CSCI5448_Project/WMS/src/config.properties";
 	
 	public InventoryController() 
 	{
